@@ -4,4 +4,4 @@ To clear the text area, press the red **x** button.
 
 &nbsp;
 
-For any suggestions, issues, feel free to DM me on Reddit: [u/tirlibibi17\_](http://www.reddit.com/message/compose/?to=tirlibibi17_) (yes, with an _ now) 
+For any suggestions, issues, feel free to DM me on Reddit: [u/tirlibibi17\_](http://www.reddit.com/message/compose/?to=tirlibibi17_) (with an _)
