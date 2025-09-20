@@ -234,10 +234,10 @@ document.addEventListener('copy', function(e) {
         }
     }
 
-    textString += '\n^Table ^formatting ^by ^[ExcelToReddit](https://xl2reddit.github.io/)\n'
+    textString += '\n^Table ^formatting ^by ^[ExcelToReddit](https://xl2redd.it/)\n'
 
     var htmlString = copyDIV.parentNode.innerHTML;
-    var htmlFooter = '<p class="first:mt-0 last:mb-0" dir="ltr"><sup style="white-space: pre-wrap;"><span>Table</span></sup><span style="white-space: pre-wrap;"> </span><sup style="white-space: pre-wrap;"><span>formatting</span></sup><span style="white-space: pre-wrap;"> </span><sup style="white-space: pre-wrap;">by</span></sup><span style="white-space: pre-wrap;"> </span><a href="https://xl2reddit.github.io/"><sup style="white-space: pre-wrap;"><span>ExcelToReddit</span></sup></a></p>'
+    var htmlFooter = '<p class="first:mt-0 last:mb-0" dir="ltr"><sup style="white-space: pre-wrap;"><span>Table</span></sup><span style="white-space: pre-wrap;"> </span><sup style="white-space: pre-wrap;"><span>formatting</span></sup><span style="white-space: pre-wrap;"> </span><sup style="white-space: pre-wrap;">by</span></sup><span style="white-space: pre-wrap;"> </span><a href="https://xl2redd.it/"><sup style="white-space: pre-wrap;"><span>ExcelToReddit</span></sup></a></p>'
     data.setData('text/plain', textString);
     data.setData('text/html', htmlString + htmlFooter);
     e.preventDefault();
