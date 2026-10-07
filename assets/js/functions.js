@@ -18,6 +18,8 @@ function generateExcelColumns() {
 ////////////////////////////////// Copy formatted code adapted from https://jsfiddle.net/Loilo/xymhgLjc/4/
 // This is the actual copy function.
 // It expects an HTML string to copy as rich text.
+var copyingFormattedTable = false;
+
 function copyFormatted(rtjson, html) {
     // Remove CopyDIV if it exists
     try {
@@ -50,26 +52,31 @@ function copyFormatted(rtjson, html) {
 
     window.getSelection().addRange(range)
 
+    copyingFormattedTable = true;
     try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copy command 1 was ' + msg + " code = " + successful);
-    } catch (err) {
-        console.log('Oops, unable to copy');
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copy command 1 was ' + msg + " code = " + successful);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+        for (var i = 0; i < activeSheets.length; i++)
+            activeSheets[i].disabled = true
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+    } finally {
+        copyingFormattedTable = false;
+        for (var i = 0; i < activeSheets.length; i++)
+            activeSheets[i].disabled = false
     }
-
-    for (var i = 0; i < activeSheets.length; i++)
-        activeSheets[i].disabled = true
-
-    try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-    } catch (err) {
-        console.log('Oops, unable to copy');
-    }
-
-    for (var i = 0; i < activeSheets.length; i++)
-        activeSheets[i].disabled = false
 }
 
 columnLetters = generateExcelColumns()
@@ -215,9 +222,13 @@ document.querySelector('#refresh').onclick = function() {
 // This is needed to be able to call the setData method
 
 document.addEventListener('copy', function(e) {
+    // Leave normal editor/page copying to the browser.
+    if (!copyingFormattedTable) return;
+
     var textString = '';
     var data = e.clipboardData;
     var copyDIV = document.getElementById("CopyDIV");
+    if (!copyDIV || !data) return;
 
     var trList = copyDIV.childNodes[0].childNodes[0];
 
